@@ -1,0 +1,69 @@
+%
+% Datasheet package
+%
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{datasheet}%
+                [2020/09/02 Datasheet Package]
+
+%% Load additional packages and commands.
+\RequirePackage{unicode-math}
+\RequirePackage{lwarp}
+\RequirePackage{verbatim}
+\RequirePackage{caption}
+\RequirePackage{listings}
+\RequirePackage{graphicx}
+\RequirePackage{etoolbox}
+\tracinglwarp
+
+%% Additional TeX/LaTeX code...
+\AfterEndPreamble{
+  \typeout{datasheet:AfterEndPreamble}
+  \setmainfont{Stix Two Text}
+  \setsansfont{TeX Gyre Heros}
+  \setmathfont{Stix Two Math}
+  \typeout{layout}
+  \settypeoutlayoutunit{in}
+  \setlrmarginsandblock{0.5in}{*}{*}
+  \setulmarginsandblock{0.5in}{0.75in}{*}
+  \checkandfixthelayout
+  % force paragraph width to margins
+  \hsize\textwidth
+  \typeout{hsize \the\hsize}
+
+  % from http://tug.org/pracjourn/2008-2/madsen/madsen.pdf
+  \warpprintonly{
+    \typeout{datasheet print}
+    \makepagestyle{datasheet}
+    \makeheadrule {datasheet}{\textwidth}{\normalrulethickness}
+    \makefootrule {datasheet}{\textwidth}{\normalrulethickness}{\footruleskip}
+    \makeevenhead {datasheet}{}{}{}
+    \makeoddhead  {datasheet}{}{}{}
+    \makeevenfoot {datasheet}{\small\thetitle}{}{\small\thepage}
+    \makeoddfoot  {datasheet}{\small\thetitle}{}{\small\thepage}
+    \makepsmarks  {datasheet}{
+      \nouppercaseheads
+      \createmark      {section}      {right}{shownumber}{}{. \ }
+      \createmark      {subsection}   {right}{shownumber}{}{. \ }
+      \createmark      {subsubsection}{right}{shownumber}{}{. \ }
+      \createplainmark {toc}          {both} {\contentsname}
+      \createplainmark {lof}          {both} {\listfigurename}
+      \createplainmark {lot}          {both} {\listtablename}
+      \createplainmark {bib}          {both} {\bibname}
+      \createplainmark {index}        {both} {\indexname}
+      \createplainmark {glossary}     {both} {\glossaryname}}
+    \pagestyle{datasheet}
+  }
+  \warpHTMLonly{
+    \typeout{datasheet HTML}
+  }
+  \pretitle{\begin{center}\LARGE\hrule\vskip0.5em}
+  \posttitle{\vskip0.5em\hrule\par\end{center}}
+  \preauthor{\begin{flushleft}}
+  \postauthor{\end{flushleft}}
+  \predate{\begin{flushleft}}
+  \postdate{\end{flushleft}}
+  \maketitle
+}
+
+\endinput
