@@ -9,6 +9,8 @@ REL ?= ws
 OUT := pdf
 LMK := -interaction=nonstopmode
 LMK += -pdflua
+LMK += $(PRJ_LMK)
+LWK := $(PRJ_LWK)
 
 .PHONY: all pdf html clean release
 
@@ -19,13 +21,13 @@ pdf: $(PRJ).pdf
 html: $(PRJ).html
 
 $(PRJ).html: $(PRJ).pdf $(DEP)
-	lwarpmk html
-	lwarpmk html
-	lwarpmk limages
+	lwarpmk $(LWK) html
+	lwarpmk $(LWK) html
+	lwarpmk $(LWK) limages
 
 $(PRJ).pdf: $(PRJ).tex $(DEP)
 	latexmk $(LMK) $<
-	lwarpmk print
+	lwarpmk $(LWK) print
 
 release: html
 	cp -a $(PRJ).html $(PRJ)-images lwarp.css $(REL)
