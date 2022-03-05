@@ -33,4 +33,4 @@ release: html
 	cp -a $(PRJ).html $(PRJ)-images lwarp.css $(REL)
 
 clean:
-	-rm -rf *.{pdf,aux,log,dvi,css,lwarpmkconf,cut,txt,fdb_latexmk,fls,svg} lwarp* *html* *-images
+	-rm -rf *.{pdf,aux,log,dvi,css,lwarpmkconf,cut,txt,fdb_latexmk,fls,svg} lwarp* *html* *-images $(PRJ).out
