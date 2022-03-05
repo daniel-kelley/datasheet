@@ -16,20 +16,18 @@
 \RequirePackage{etoolbox}
 \tracinglwarp
 
+\setmainfont{Stix Two Text}
+\setsansfont{TeX Gyre Heros}
+\setmathfont{Stix Two Math}
+\typeout{layout}
+\settypeoutlayoutunit{in}
+\setlrmarginsandblock{0.5in}{*}{*}
+\setulmarginsandblock{0.5in}{0.75in}{*}
+\checkandfixthelayout
+
 %% Additional TeX/LaTeX code...
 \AfterEndPreamble{
   \typeout{datasheet:AfterEndPreamble}
-  \setmainfont{Stix Two Text}
-  \setsansfont{TeX Gyre Heros}
-  \setmathfont{Stix Two Math}
-  \typeout{layout}
-  \settypeoutlayoutunit{in}
-  \setlrmarginsandblock{0.5in}{*}{*}
-  \setulmarginsandblock{0.5in}{0.75in}{*}
-  \checkandfixthelayout
-  % force paragraph width to margins
-  \hsize\textwidth
-  \typeout{hsize \the\hsize}
 
   % from http://tug.org/pracjourn/2008-2/madsen/madsen.pdf
   \warpprintonly{
